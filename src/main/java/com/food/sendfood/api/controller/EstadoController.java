@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.food.sendfood.domain.model.Estado;
 import com.food.sendfood.domain.repository.EstadoRepository;
-
+ 
 @RestController
 @RequestMapping("/estado")
 public class EstadoController {
