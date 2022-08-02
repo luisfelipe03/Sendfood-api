@@ -52,7 +52,7 @@ public class CozinhaController {
 	public ResponseEntity<Cozinha> atualizar(@PathVariable Long id, @RequestBody Cozinha cozinha) {
 		return cozinhaRepository.findById(id).map(record -> {
 			record.setNome(cozinha.getNome());
-			Cozinha updated = cozinhaRepository.save(record);
+			Cozinha updated = cadastroCozinha.salvar(record);
 			return ResponseEntity.ok().body(updated);
 		}).orElse(ResponseEntity.notFound().build());
 	}
@@ -62,8 +62,10 @@ public class CozinhaController {
 		try {
 			cadastroCozinha.remover(id);
 			return ResponseEntity.noContent().build();
+			
 		} catch (EntidadeNaoEncontradaException e) {
 			return ResponseEntity.notFound().build();
+			
 		} catch (EntidadeEmUsoException e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}

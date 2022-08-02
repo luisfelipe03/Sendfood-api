@@ -23,12 +23,12 @@ public class CadastroCozinhaService {
 	public void remover(Long id) {
 		try {
 			cozinhaRepository.deleteById(id);
-		} 
-		catch (EmptyResultDataAccessException e) {
+			
+		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
-					String.format("Cozinha de codigo %d nao encontrado", id));
-		} 
-		catch (DataIntegrityViolationException e) {
+					String.format("Nao existe cadastro de cozinha com codigo %d", id));
+			
+		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
 					String.format("Cozinha de codigo %d nao pode ser removida, pois esta em uso", id));
 		}
